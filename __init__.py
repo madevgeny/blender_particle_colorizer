@@ -72,7 +72,7 @@ class PCOL_PT_Set_colors(Operator):
         res['max'] = maxV
         res['size'] = int(math.sqrt(len(particles)))
         
-        with open('C:/Users/evgen/sync/blender/balls/balls3.json', 'wt') as f:
+        with open(bpy.data.filepath + '.json', 'wt') as f:
             json.dump(res, f)
         
 

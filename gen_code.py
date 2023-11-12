@@ -1,5 +1,6 @@
 import json
 import png
+import sys
 import math
 
 import numpy as np
@@ -8,8 +9,8 @@ import matplotlib.pyplot as plt
 
 DELTA = 32
 
-def main():
-    with open('C:/Users/evgen/sync/blender/balls/balls3.json', 'rt') as f:
+def main(desc_json, gradient_png):
+    with open(desc_json, 'rt') as f:
         data = json.load(f)
 
     size = data['size']
@@ -65,9 +66,11 @@ def main():
     # ax.grid(True)
     # #plt.show()
 
-    with open('C:/Users/evgen/sync/blender/balls/gradient.png', 'wb') as f:
+    with open(gradient_png, 'wb') as f:
         w = png.Writer(width // 3, height, greyscale=False)
         w.write(f, img)
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <input_json> <output_png>")
+    main(*sys.argv[1:])
